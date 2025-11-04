@@ -13,10 +13,15 @@ namespace Spawnable
 
         private TransparencyReducer _reducer;
 
+        private Collider[] _targets;
+
         public event Action<Bomb> Disappeared;
 
-        private void Awake() => 
+        private void Awake()
+        {
             _reducer = GetComponent<TransparencyReducer>();
+            _targets = new Collider[OverlapSphereArraySize];
+        }
 
         private void OnEnable() => 
             _reducer.HasDecreased += Explode;
@@ -39,11 +44,9 @@ namespace Spawnable
 
         private void Explode()
         {
-            Collider[] targets = new Collider[OverlapSphereArraySize];
-            
-            Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, targets);
+            Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, _targets);
 
-            foreach (Collider target in targets)
+            foreach (Collider target in _targets)
                 if (target is not null && target.TryGetComponent(out Rigidbody targetRigidbody))
                     targetRigidbody.AddExplosionForce(_explosionForce, targetRigidbody.transform.position, _explosionRadius,
                         0f, ForceMode.Impulse);

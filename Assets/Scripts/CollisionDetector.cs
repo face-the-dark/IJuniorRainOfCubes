@@ -14,7 +14,7 @@ public class CollisionDetector : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        bool hasPlatformComponent = other.gameObject.TryGetComponent<Platform>(out Platform platform);
+        bool hasPlatformComponent = other.gameObject.TryGetComponent(out Platform platform);
         
         if (hasPlatformComponent && _isFirstCollision == false)
         {

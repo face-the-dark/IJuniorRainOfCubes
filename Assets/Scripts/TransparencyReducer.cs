@@ -29,20 +29,14 @@ public class TransparencyReducer : MonoBehaviour
         _lifeTimer.StartTimer();
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() => 
         _lifeTimer.DurationGenerated -= OnDurationGenerated;
-    }
 
-    public void Reset()
-    {
+    public void Reset() => 
         _renderer.material.color = _originalColor;
-    }
 
-    private void OnDurationGenerated(float duration)
-    {
+    private void OnDurationGenerated(float duration) => 
         StartCoroutine(Reduce(duration));
-    }
 
     private IEnumerator Reduce(float duration)
     {

@@ -41,10 +41,8 @@ namespace Spawners
             return _pool.Get();
         }
 
-        private T Create()
-        {
-            return Instantiate(_prefab);
-        }
+        private T Create() => 
+            Instantiate(_prefab);
 
         private void UpdateEntityCounter()
         {

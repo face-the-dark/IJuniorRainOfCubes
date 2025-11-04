@@ -15,13 +15,9 @@ public class ColorChanger : MonoBehaviour
         _baseColor = _renderer.material.color;
     }
 
-    public void Reset()
-    {
+    public void Reset() => 
         _renderer.material.color = _baseColor;
-    }
 
-    public void SetRandomColor()
-    {
+    public void SetRandomColor() => 
         _renderer.material.color = Random.ColorHSV();
-    }
 }

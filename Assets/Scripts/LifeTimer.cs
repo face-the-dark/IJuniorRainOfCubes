@@ -11,10 +11,8 @@ public class LifeTimer : MonoBehaviour
     public event Action TimerExpired;
     public event Action<float> DurationGenerated;
     
-    public void StartTimer()
-    {
+    public void StartTimer() => 
         StartCoroutine(StartCountdown());
-    }
 
     private IEnumerator StartCountdown()
     {
