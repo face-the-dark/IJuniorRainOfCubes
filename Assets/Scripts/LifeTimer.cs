@@ -9,7 +9,8 @@ public class LifeTimer : MonoBehaviour
     [SerializeField] private float _maxLifeTime = 5f;
 
     public event Action TimerExpired;
-
+    public event Action<float> DurationGenerated;
+    
     public void StartTimer()
     {
         StartCoroutine(StartCountdown());
@@ -17,7 +18,11 @@ public class LifeTimer : MonoBehaviour
 
     private IEnumerator StartCountdown()
     {
-        yield return new WaitForSeconds(Random.Range(_minLifeTime, _maxLifeTime));
+        float seconds = Random.Range(_minLifeTime, _maxLifeTime);
+        
+        DurationGenerated?.Invoke(seconds);
+        
+        yield return new WaitForSeconds(seconds);
         
         TimerExpired?.Invoke();
     }
