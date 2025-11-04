@@ -1,7 +1,7 @@
 ﻿using Spawnable;
 using UnityEngine;
 
-namespace Spawner
+namespace Spawners
 {
     public class BombSpawner : Spawner<Bomb>
     {

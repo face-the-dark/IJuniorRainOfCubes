@@ -1,6 +1,6 @@
 ﻿using Spawnable;
 
-namespace Spawner
+namespace Spawners
 {
     public class CubeSpawner : Spawner<Cube>
     {
