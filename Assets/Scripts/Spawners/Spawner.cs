@@ -7,11 +7,11 @@ namespace Spawners
 {
     public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ISpawnable<T>
     {
+        [SerializeField] protected float RepeatRate = 1f;
+        
         [SerializeField] private T _prefab;
         [SerializeField] private int _poolCapacity = 5;
         [SerializeField] private int _poolMaxSize = 5;
-
-        [SerializeField] protected float RepeatRate = 1f;
 
         private ObjectPool<T> _pool;
         private EntityCounter _entityCounter;
@@ -21,8 +21,6 @@ namespace Spawners
 
         private void Awake()
         {
-            _entityCounter = new EntityCounter();
-
             _pool = new ObjectPool<T>(
                 createFunc: Create,
                 actionOnGet: ActionOnGet,
@@ -32,6 +30,8 @@ namespace Spawners
                 defaultCapacity: _poolCapacity,
                 maxSize: _poolMaxSize
             );
+            
+            _entityCounter = new EntityCounter();
         }
 
         protected T GetObject()

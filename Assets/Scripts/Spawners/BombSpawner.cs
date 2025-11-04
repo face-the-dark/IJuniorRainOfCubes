@@ -5,7 +5,7 @@ namespace Spawners
 {
     public class BombSpawner : Spawner<Bomb>
     {
-        [SerializeField] Spawner<Cube> _cubeSpawner;
+        [SerializeField] private Spawner<Cube> _cubeSpawner;
 
         private void OnEnable() => 
             _cubeSpawner.Released += OnReleased;
